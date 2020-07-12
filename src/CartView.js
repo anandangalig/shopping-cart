@@ -17,7 +17,6 @@ const getInitialData = async () => {
 };
 
 const productsInCartReducer = (state, action) => {
-  console.log({ state, action });
   switch (action.type) {
     case 'LOAD_DATA':
       return [...action.payload];
@@ -42,7 +41,6 @@ const CartView = () => {
   const [productsInCart, dispatch] = useReducer(productsInCartReducer, []);
   useEffect(() => {
     getInitialData().then((response) => {
-      console.log(response);
       dispatch({
         type: 'LOAD_DATA',
         payload: response.cart.products,
