@@ -45,10 +45,17 @@ const renderQuantityInput = ({ inputValue, product_id, setInputValue, dispatch }
   );
 };
 
+const renderPrice = ({ discount, price, credit_coupon_price }) => {
+  return discount ? (
+    <span style={{ color: 'green' }}>{`$${credit_coupon_price} (orig. $${price})`}</span>
+  ) : (
+    `$${price}`
+  );
+};
+
 const CartItem = ({ product, dispatch }) => {
   const { quantity, credit_coupon_price, discount, price, product_id } = product;
   const [inputValue, setInputValue] = useState(quantity);
-  console.log({ inputValue });
   const [productDetails, setProductDetails] = useState({ name: '', description: '', avatar: '' });
 
   useEffect(() => {
@@ -61,12 +68,12 @@ const CartItem = ({ product, dispatch }) => {
   return (
     <div>
       <img src={productDetails.avatar} alt={productDetails.name} />
-      <div className="name">{productDetails.name}</div>
-      <div className="price">{`$${credit_coupon_price} (orig. $${price})`}</div>
+      <div className="name">Product Name: {productDetails.name}</div>
+      <div className="price">Price: {renderPrice({ discount, price, credit_coupon_price })}</div>
       <div className="quantity">
         {renderQuantityInput({ inputValue, product_id, dispatch, setInputValue })}
       </div>
-      <div className="total">{`total: $${(credit_coupon_price * quantity).toFixed(2)}`}</div>
+      <div className="total">{`Total: $${(credit_coupon_price * quantity).toFixed(2)}`}</div>
       <button
         onClick={() =>
           dispatch({
