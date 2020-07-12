@@ -1,6 +1,8 @@
 import React, { useReducer, useEffect } from 'react';
 import axios from 'axios';
 import CartItem from './CartItem.js';
+import CartTotal from './CartTotal.js';
+import './CartView.css';
 
 const getInitialData = async () => {
   try {
@@ -49,11 +51,14 @@ const CartView = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      {productsInCart.map((product) => (
-        <CartItem product={product} dispatch={dispatch} key={product.id} />
-      ))}
-    </React.Fragment>
+    <div className="cartViewContainer">
+      <div className="cartItemsList">
+        {productsInCart.map((product) => (
+          <CartItem product={product} dispatch={dispatch} key={product.id} />
+        ))}
+      </div>
+      <CartTotal className="cartTotal" productsInCart={productsInCart} />
+    </div>
   );
 };
 export default CartView;

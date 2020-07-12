@@ -1,0 +1,4 @@
+.cartViewContainer {
+  display: flex;
+  flex-direction: row;
+}
