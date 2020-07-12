@@ -1,4 +1,9 @@
 .cartViewContainer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+.cartItemsList {
+  display: flex;
+  flex-direction: column;
 }

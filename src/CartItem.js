@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './CartItem.css';
 
 const getProductInfo = async (id) => {
   try {
@@ -65,25 +66,26 @@ const CartItem = ({ product, dispatch }) => {
   }, [product_id]);
 
   return (
-    <div>
+    <div className="cartItem">
       <img src={productDetails.avatar} alt={productDetails.name} />
-      <div className="name">Product Name: {productDetails.name}</div>
-      <div className="price">Price: {renderPrice({ discount, price, credit_coupon_price })}</div>
-      <div className="quantity">
-        {renderQuantityInput({ inputValue, product_id, dispatch, setInputValue })}
+      <div className="cartItemDescription">
+        <div className="name">Product Name: {productDetails.name}</div>
+        <div className="price">Price: {renderPrice({ discount, price, credit_coupon_price })}</div>
+        <div className="quantity">
+          {renderQuantityInput({ inputValue, product_id, dispatch, setInputValue })}
+        </div>
+        <div className="total">{`Total: $${(credit_coupon_price * quantity).toFixed(2)}`}</div>
+        <button
+          onClick={() =>
+            dispatch({
+              type: 'REMOVE_PRODUCT',
+              payload: product_id,
+            })
+          }
+        >
+          Delete Item
+        </button>
       </div>
-      <div className="total">{`Total: $${(credit_coupon_price * quantity).toFixed(2)}`}</div>
-      <button
-        onClick={() =>
-          dispatch({
-            type: 'REMOVE_PRODUCT',
-            payload: product_id,
-          })
-        }
-      >
-        Delete Item
-      </button>
-      <hr />
     </div>
   );
 };

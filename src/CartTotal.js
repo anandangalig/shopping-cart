@@ -15,7 +15,7 @@ const CartTotal = ({ productsInCart }) => {
   }, 0);
 
   return (
-    <div style={{ margin: '2rem', position: 'fixed', right: 0, top: 0 }}>
+    <div style={{ margin: '3rem', position: 'fixed', right: 0, top: 0 }}>
       <h3>Subtotal: ${subtotal.toFixed(2)}</h3>
       <h3>Discount: ${discount.toFixed(2)}</h3>
       <hr />
