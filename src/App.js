@@ -4,8 +4,8 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <CartView className="App-header" />
+    <div className="">
+      <CartView />
     </div>
   );
 }
