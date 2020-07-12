@@ -10,7 +10,6 @@ const getProductInfo = async (id) => {
         product_id: `${id}`,
       },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error(error);
